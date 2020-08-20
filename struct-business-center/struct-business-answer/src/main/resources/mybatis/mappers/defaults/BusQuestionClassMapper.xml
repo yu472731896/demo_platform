@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.minghui.demo.entity.defaults.dao.BusQuestionClassDAO" >
+    <resultMap id="BaseResultMap" type="com.minghui.demo.entity.defaults.model.BusQuestionClass" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="BIT" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="create_department" property="createDepartment" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_server_host" property="createServerHost" jdbcType="VARCHAR" />
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+        <result column="update_department" property="updateDepartment" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="update_server_host" property="updateServerHost" jdbcType="VARCHAR" />
+        <result column="record_version" property="recordVersion" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        id, name, parent_id, parent_ids, is_delete, create_user, create_department, create_time, 
+        create_server_host, update_user, update_department, update_time, update_server_host, 
+        record_version
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClassExample" >
+        select
+        <if test="distinct" >
+            distinct
+		</if>
+        <if test="includeColumns == null or includeColumns.size()==0" >
+			<include refid="Base_Column_List"/>
+        </if>
+        <if test="includeColumns != null or includeColumns.size()>0" >
+            <foreach collection="includeColumns" index="index" item="includeColumns" separator="," >
+            	${includeColumns}
+            </foreach>
+        </if>
+        from t_bus_question_class
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null" >
+			order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_bus_question_class
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_bus_question_class
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClassExample" >
+        delete from t_bus_question_class
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClass" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_bus_question_class (name, parent_id, parent_ids, 
+            is_delete, create_user, create_department, 
+            create_time, create_server_host, update_user, 
+            update_department, update_time, update_server_host, 
+            record_version)
+        values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, 
+            #{isDelete,jdbcType=BIT}, #{createUser,jdbcType=VARCHAR}, #{createDepartment,jdbcType=VARCHAR}, 
+            #{createTime,jdbcType=TIMESTAMP}, #{createServerHost,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+            #{updateDepartment,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateServerHost,jdbcType=VARCHAR}, 
+            #{recordVersion,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClass" >
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_bus_question_class
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="parentId != null" >
+                parent_id,
+            </if>
+            <if test="parentIds != null" >
+                parent_ids,
+            </if>
+            <if test="isDelete != null" >
+                is_delete,
+            </if>
+            <if test="createUser != null" >
+                create_user,
+            </if>
+            <if test="createDepartment != null" >
+                create_department,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createServerHost != null" >
+                create_server_host,
+            </if>
+            <if test="updateUser != null" >
+                update_user,
+            </if>
+            <if test="updateDepartment != null" >
+                update_department,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="updateServerHost != null" >
+                update_server_host,
+            </if>
+            <if test="recordVersion != null" >
+                record_version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null" >
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="parentIds != null" >
+                #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null" >
+                #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="createUser != null" >
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createDepartment != null" >
+                #{createDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createServerHost != null" >
+                #{createServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null" >
+                #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDepartment != null" >
+                #{updateDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateServerHost != null" >
+                #{updateServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="recordVersion != null" >
+                #{recordVersion,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClassExample" resultType="java.lang.Integer" >
+        SELECT COUNT(1) FROM
+        <if test="distinct" >
+            (SELECT
+              DISTINCT
+              <if test="includeColumns == null or includeColumns.size()==0" >
+                <include refid="Base_Column_List"/>
+              </if>
+              <if test="includeColumns != null or includeColumns.size()>0" >
+                  <foreach collection="includeColumns" index="index" item="includeColumns" separator="," >
+                  	${includeColumns}
+                  </foreach>
+              </if>
+              from t_bus_question_class
+              <if test="_parameter != null">
+                  <include refid="Example_Where_Clause"/>
+              </if>) COUNT_SQL
+        </if>
+        <if test="!distinct" >
+            t_bus_question_class
+          <if test="_parameter != null" >
+              <include refid="Example_Where_Clause" />
+          </if>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update t_bus_question_class
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.name != null" >
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.parentId != null" >
+                parent_id = #{record.parentId,jdbcType=BIGINT},
+            </if>
+            <if test="record.parentIds != null" >
+                parent_ids = #{record.parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isDelete != null" >
+                is_delete = #{record.isDelete,jdbcType=BIT},
+            </if>
+            <if test="record.createUser != null" >
+                create_user = #{record.createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createDepartment != null" >
+                create_department = #{record.createDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null" >
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createServerHost != null" >
+                create_server_host = #{record.createServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateUser != null" >
+                update_user = #{record.updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateDepartment != null" >
+                update_department = #{record.updateDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateTime != null" >
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateServerHost != null" >
+                update_server_host = #{record.updateServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="record.recordVersion != null" >
+                record_version = #{record.recordVersion,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update t_bus_question_class
+        set id = #{record.id,jdbcType=BIGINT},
+            name = #{record.name,jdbcType=VARCHAR},
+            parent_id = #{record.parentId,jdbcType=BIGINT},
+            parent_ids = #{record.parentIds,jdbcType=VARCHAR},
+            is_delete = #{record.isDelete,jdbcType=BIT},
+            create_user = #{record.createUser,jdbcType=VARCHAR},
+            create_department = #{record.createDepartment,jdbcType=VARCHAR},
+            create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            create_server_host = #{record.createServerHost,jdbcType=VARCHAR},
+            update_user = #{record.updateUser,jdbcType=VARCHAR},
+            update_department = #{record.updateDepartment,jdbcType=VARCHAR},
+            update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            update_server_host = #{record.updateServerHost,jdbcType=VARCHAR},
+            record_version = #{record.recordVersion,jdbcType=INTEGER}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClass" >
+        update t_bus_question_class
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null" >
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="parentIds != null" >
+                parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null" >
+                is_delete = #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="createUser != null" >
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createDepartment != null" >
+                create_department = #{createDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createServerHost != null" >
+                create_server_host = #{createServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null" >
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDepartment != null" >
+                update_department = #{updateDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateServerHost != null" >
+                update_server_host = #{updateServerHost,jdbcType=VARCHAR},
+            </if>
+            <if test="recordVersion != null" >
+                record_version = #{recordVersion,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.minghui.demo.entity.defaults.model.BusQuestionClass" >
+        update t_bus_question_class
+        set name = #{name,jdbcType=VARCHAR},
+            parent_id = #{parentId,jdbcType=BIGINT},
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            is_delete = #{isDelete,jdbcType=BIT},
+            create_user = #{createUser,jdbcType=VARCHAR},
+            create_department = #{createDepartment,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            create_server_host = #{createServerHost,jdbcType=VARCHAR},
+            update_user = #{updateUser,jdbcType=VARCHAR},
+            update_department = #{updateDepartment,jdbcType=VARCHAR},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            update_server_host = #{updateServerHost,jdbcType=VARCHAR},
+            record_version = #{recordVersion,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <insert id="insertBatch" parameterType="java.util.List" >
+        insert into t_bus_question_class (
+          id,
+          name,
+          parent_id,
+          parent_ids,
+          is_delete,
+          create_user,
+          create_department,
+          create_time,
+          create_server_host,
+          update_user,
+          update_department,
+          update_time,
+          update_server_host,
+          record_version
+        )
+        values
+        <foreach collection="records" item="record" index="index" separator="," >
+            (
+              #{record.id,jdbcType=BIGINT},
+              #{record.name,jdbcType=VARCHAR},
+              #{record.parentId,jdbcType=BIGINT},
+              #{record.parentIds,jdbcType=VARCHAR},
+              #{record.isDelete,jdbcType=BIT},
+              #{record.createUser,jdbcType=VARCHAR},
+              #{record.createDepartment,jdbcType=VARCHAR},
+              #{record.createTime,jdbcType=TIMESTAMP},
+              #{record.createServerHost,jdbcType=VARCHAR},
+              #{record.updateUser,jdbcType=VARCHAR},
+              #{record.updateDepartment,jdbcType=VARCHAR},
+              #{record.updateTime,jdbcType=TIMESTAMP},
+              #{record.updateServerHost,jdbcType=VARCHAR},
+              #{record.recordVersion,jdbcType=INTEGER}
+        )
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <context id="MySqlTables" targetRuntime="MyBatis3">
+        <!--自定义实体类-->
+        <plugin type="com.mybatis.generator.plugins.ModelPlugin">
+            <!--继承父类-->
+            <property name="superClass" value="com.minghui.common.framework.model.BaseModel"></property>
+            <property name="ignoreFields" value="isDelete,createUser,createDepartment,createServerHost,createTime,updateUser,updateDepartment,updateServerHost,updateTime,recordVersion"/>
+        </plugin>
+        <!--自定义请求参数-->
+        <plugin type="com.mybatis.generator.plugins.ModelExamplePlugin">
+            <!--继承父类-->
+            <property name="superClass" value="com.minghui.common.framework.model.BaseExample"></property>
+        </plugin>
+        <!--自定义Dao-->
+        <plugin type="com.mybatis.generator.plugins.MapperJavaPlugin">
+            <!--继承父类-->
+            <property name="superClass" value="com.minghui.common.framework.dao.BaseDAO"></property>
+        </plugin>
+        <plugin type="com.mybatis.generator.plugins.MySqlPaginationPlugin">
+            <!--分页实体类对象-->
+            <property name="pagerEntityClass" value="com.minghui.common.framework.page.Pager"></property>
+            <!--是否拼接分页sql，如果使用分页插件，则改配置为false即可-->
+            <property name="enablePage" value="false"/>
+        </plugin>
+        <!--自定义mapper.xml-->
+        <plugin type="com.mybatis.generator.plugins.MapperXmlPlugin"></plugin>
+        <!--自定义服务类-->
+        <plugin type="com.mybatis.generator.plugins.ServicePlugin">
+            <property name="enableAnnotation" value="true" />
+            <property name="enableOverrideInsertBatch" value="true" />
+            <property name="targetPackage" value="com.minghui.demo.service.defaults" />
+            <property name="implementationPackage" value="com.minghui.demo.service.defaults.impl"/>
+            <property name="targetProject" value="src\main\java" />
+            <!--服务父类-->
+            <property name="superClass" value="com.minghui.common.framework.service.BaseService"/>
+            <!--服务实现类父类-->
+            <property name="superClassImpl" value="com.minghui.common.framework.impl.BaseServiceImpl"/>
+        </plugin>
+        <plugin type="com.mybatis.generator.plugins.PostgreSqlInsertBatchPlugin"></plugin>
+        <!-- 使用自定义的注释插件 -->
+        <commentGenerator type="com.mybatis.generator.generator.MyCommentGenerator">
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.16.12:3306/map_server?useSSL=false"
+                        userId="root" password="ropeok" ></jdbcConnection> -->
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/demo?useSSL=false"
+                        userId="root" password="123456" >
+        </jdbcConnection>
+		
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.minghui.demo.entity.defaults.model"
+                            targetProject="src/main/java" >
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mybatis.mappers.defaults"
+                         targetProject="src\main\resources" />
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator targetPackage="com.minghui.demo.entity.defaults.dao"
+                             targetProject="src/main/java" type="XMLMAPPER" />
+
+        <!--<table tableName="t_sys_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_sys_role_relation">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_sys_permission_relation">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_sys_permission">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_sys_role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>-->
+
+        <table tableName="t_bus_answer">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_bus_answer_record">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_bus_member">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_bus_question_bank">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="t_bus_question_class">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+
+    </context>
+</generatorConfiguration>

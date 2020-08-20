@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <groupId>com.minghui</groupId>
+    <artifactId>demo_platform</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>demo_platform</name>
+    <description>minghui（单服务——示例）平台</description>
+    <packaging>pom</packaging>
+
+
+   <modules>
+       <module>struct-parent</module>
+       <module>struct-common</module>
+       <module>struct-business-center</module>
+       <module>struct-oauth</module>
+   </modules>
+
+</project>

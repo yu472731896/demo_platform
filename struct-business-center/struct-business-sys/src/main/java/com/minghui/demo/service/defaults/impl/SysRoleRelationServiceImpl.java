@@ -1,0 +1,34 @@
+package com.minghui.demo.service.defaults.impl;
+
+import com.minghui.common.framework.impl.BaseServiceImpl;
+import com.minghui.demo.entity.defaults.dao.SysRoleRelationDAO;
+import com.minghui.demo.entity.defaults.model.SysRoleRelation;
+import com.minghui.demo.entity.defaults.model.SysRoleRelationExample;
+import com.minghui.demo.service.defaults.SysRoleRelationService;
+import java.util.List;
+import org.springframework.stereotype.Service;
+
+/**
+ * 后台用户和角色关系表服务实现类
+ * @author ThinkPad 2020-08-18 11:46
+ * @since 1.0.0
+ */
+@Service("sysRoleRelationService")
+public class SysRoleRelationServiceImpl extends BaseServiceImpl<Long, SysRoleRelation, SysRoleRelationExample, SysRoleRelationDAO> implements SysRoleRelationService {
+
+
+    /**
+     * 后台用户和角色关系表批量插入
+     * @param records 后台用户和角色关系表对象列表
+     * @return 成功插入后台用户和角色关系表数量
+     * @author ThinkPad 2020-08-18 11:46
+     * @since 1.0.0
+     */
+    @Override
+    public int insertBatch(List<SysRoleRelation> records) {
+        for (SysRoleRelation record : records) {
+            transforInsertModel(record);
+        }
+        return getDAO().insertBatch(records);
+    }
+}

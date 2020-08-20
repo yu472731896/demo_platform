@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.minghui</groupId>
+    <artifactId>struct-business-answer</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>struct-business-answer</name>
+    <description>answerManager</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.minghui</groupId>
+        <artifactId>struct-business-center</artifactId>
+        <relativePath>../../struct-business-center/pom.xml</relativePath>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>io.springfox</groupId>-->
+            <!--<artifactId>springfox-swagger2</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>io.springfox</groupId>-->
+            <!--<artifactId>springfox-swagger-ui</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-autoconfigure</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.quartz-scheduler</groupId>-->
+            <!--<artifactId>quartz</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-swagger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-entity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-swagger</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-security</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.ropeok</groupId>-->
+            <!--<artifactId>struct-common-log</artifactId>-->
+        <!--</dependency>-->
+       <!--<dependency>-->
+            <!--<groupId>com.ropeok</groupId>-->
+            <!--<artifactId>struct-common-integration</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.ropeok</groupId>-->
+            <!--<artifactId>struct-common-db</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.minghui</groupId>
+            <artifactId>struct-common-framework</artifactId>
+        </dependency>
+
+        <!-- 认证相关 begin -->
+        <!-- 注意是starter,自动配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- 不是starter,手动配置 -->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <!-- 认证相关 end -->
+
+        <!-- 将token存储在redis中 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>2.0.1.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 打包环境 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env>prd</env>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>mybatis/**/*.xml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>mybatis/**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <filters>
+            <filter>../../struct-parent/src/main/filters/filter-${env}.properties</filter>
+           <!-- <filter>src/main/filters/filter-${env}.properties</filter>-->
+        </filters>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <configuration>
+                    <descriptor>src/main/assemble/service-impl-jar-with-dependency.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!--mybatis自动生成代码插件-->
+            <plugin>
+              <!--  <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    &lt;!&ndash; 是否覆盖，true表示会替换生成的JAVA文件，false则不覆盖 &ndash;&gt;
+                    <overwrite>true</overwrite>
+                    <configurationFile>src/main/resources/mybatis-generator/mybatis-generator-config.xml</configurationFile>
+                    <verbose>true</verbose>
+                </configuration>-->
+                <groupId>com.minghui</groupId>
+                <artifactId>mybatis-generator-plus</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <configRootDir>${project.basedir}/src/main/resources/mybatis-generator/mysql</configRootDir>
+                </configuration>
+                <dependencies>
+                    <!--mysql驱动包-->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.46</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
+</project>

@@ -1,0 +1,10 @@
+com\ropeok\integration\annotation\VersionLocker.class
+com\ropeok\integration\locker\interceptor\VersionInterceptor.class
+com\ropeok\integration\locker\cache\VersionLockerCache.class
+com\ropeok\integration\cache\Cache.class
+com\ropeok\integration\cache\RedisManager.class
+com\ropeok\integration\cache\RedisCacheBuilder$RedisCache.class
+com\ropeok\integration\locker\util\PluginUtil.class
+com\ropeok\integration\cache\RedisCacheBuilder.class
+com\ropeok\integration\cache\Cache$Signature.class
+com\ropeok\integration\locker\cache\LocalVersionLockerCache.class

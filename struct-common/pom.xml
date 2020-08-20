@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.minghui</groupId>
+    <artifactId>struct-common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.minghui</groupId>
+        <artifactId>struct-parent</artifactId>
+        <relativePath>../struct-parent/pom.xml</relativePath>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>struct-common-util</module>
+        <module>struct-common-framework</module>
+        <module>struct-common-redis</module>
+        <module>struct-common-entity</module>
+        <!--<module>struct-common-integration</module>-->
+        <module>struct-common-exception</module>
+        <!--<module>struct-common-db</module>-->
+        <module>struct-common-swagger</module>
+		<!--<module>struct-common-log</module>-->
+		<module>struct-common-security</module>
+    </modules>
+</project>

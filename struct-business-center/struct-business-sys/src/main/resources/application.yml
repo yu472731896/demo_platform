@@ -1,0 +1,161 @@
+server:
+  port: 9050
+  undertow:
+    io-threads: 16
+    worker-threads: 256
+    buffer-size: 1024
+    direct-buffers: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+#  spring 数据源加载方式
+spring:
+  application:
+    name: sys
+  datasource:
+    url: ${jdbc.url}
+    username: ${jdbc.username}
+    password: ${jdbc.password}
+    driver-class-name: ${jdbc.driver}
+  redis:
+    host: 118.89.48.148
+    port: 6379
+    database: 1
+    password: mh@2020
+  security:
+    basic:
+      enabled: true
+      path: /swagger-ui.html
+    user:
+      name: admin
+      password: 123456
+#mybatis.mapper-locations: classpath*:mybatis/mappers/**/*.xml
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: minghui-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+#spring:
+#  application:
+#    name: bussiness-prisons
+#    security:
+#      user:
+#        name: ropeok
+#        passwork: ropeok
+#      datasource:
+#        dynamic:
+#          enable: true
+#          druid:
+#            core:
+#              url: ${jdbc.url}
+#              username: ${jdbc.username}
+#              password: ${jdbc.password}
+#              driver-class-name: ${jdbc.driver}
+#            #连接池配置(通常来说，只需要修改initialSize、minIdle、maxActive
+#            initial-size: 1
+#            max-active: 20
+#            min-idle: 1
+#            # 配置获取连接等待超时的时间
+#            max-wait: 60000
+#            #打开PSCache，并且指定每个连接上PSCache的大小
+#            pool-prepared-statements: true
+#            max-pool-prepared-statement-per-connection-size: 20
+#            validation-query: SELECT 'x'
+#            test-on-borrow: false
+#            test-on-return: false
+#            test-while-idle: true
+#            #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#            time-between-eviction-runs-millis: 60000
+#            #配置一个连接在池中最小生存的时间，单位是毫秒
+#            min-evictable-idle-time-millis: 300000
+#            filters: stat,wall
+#            # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+#            #是否启用StatFilter默认值true
+#            web-stat-filter.enabled: true
+#            web-stat-filter.url-pattern:  /*
+#            web-stat-filter.exclusions: "*.js , *.gif ,*.jpg ,*.png ,*.css ,*.ico , /druid/*"
+#            web-stat-filter.session-stat-max-count: 1000
+#            web-stat-filter.profile-enable: true
+#            # StatViewServlet配置
+#            #展示Druid的统计信息,StatViewServlet的用途包括：1.提供监控信息展示的html页面2.提供监控信息的JSON API
+#            #是否启用StatViewServlet默认值true
+#            stat-view-servlet.enabled: true
+#            #根据配置中的url-pattern来访问内置监控页面，如果是上面的配置，内置监控页面的首页是/druid/index.html例如：
+#            stat-view-servlet.url-pattern:  /druid/*
+#            #允许清空统计数据
+#            stat-view-servlet.reset-enable:  true
+#            stat-view-servlet.login-username: admin
+#            stat-view-servlet.login-password: admin
+
+
+
+#设置最大超时时间
+#ribbon:
+#  ServerListRefreshInterval: 10  #刷新服务列表源的间隔时间
+#  OkToRetryOnAllOperations: true
+#  MaxAutoRetries: 1
+#  MaxAutoRetriesNextServer: 1
+#  ReadTimeout: 16000
+#  ConnectTimeout: 16000
+
+#设置最大容错超时时间
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 16000
+
+mh:
+  oauth2:
+    token:
+      type: redis
+  security:
+    ignore:
+      whiteHttpUrls: /v2/api-docs
+      menusPaths:
+  auth:
+    authHttpUrl:
+    urlEnable: false
+  swagger:
+    enable: true
+    title: 数据管理
+    description: 接口文档
+    version: 1.0
+    base-package: com.minghui.demo
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+    - /swagger-ui.html
+    - /swagger-resources/**
+    - /swagger/**
+    - /**/v2/api-docs
+    - /**/*.js
+    - /**/*.css
+    - /**/*.png
+    - /**/*.ico
+    - /webjars/springfox-swagger-ui/**
+    - /druid/**
+    - /actuator/**
+    - /sso/**
+    - /home/**
+    - /sysUser/b/**
+
+logging:
+  level:
+    com.minghui: DEBUG
+
+AppID: wx4730e87db5960902
+AppSecret: 45a3c88250758962dd61ad493c3ce999

@@ -1,0 +1,8 @@
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\locker\cache\LocalVersionLockerCache.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\cache\Cache.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\cache\RedisManager.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\annotation\VersionLocker.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\locker\cache\VersionLockerCache.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\locker\util\PluginUtil.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\cache\RedisCacheBuilder.java
+D:\git_project\mingHui\answer_platform\struct-common\struct-common-integration\src\main\java\com\minghui\integration\locker\interceptor\VersionInterceptor.java
